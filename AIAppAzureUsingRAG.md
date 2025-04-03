@@ -1,0 +1,116 @@
+# Build an AI App with Azure using RAG
+- ![alt text](image-38.png)
+- ![alt text](image-39.png)
+- ![alt text](image-40.png)
+- ![alt text](image-41.png)
+- ![alt text](image-42.png)
+- We can get started with a sample dataset
+- We can connect to the mongo shell
+- We can create a new collection for our data
+- ![alt text](image-43.png)
+- We can load some sample data also
+- ![alt text](image-44.png)
+- We can open our own mongodb shell
+- ![alt text](image-45.png)
+
+## Migrate to vcore-based Azure Cosmos DB for MongoDB
+- ![alt text](image-46.png)
+- ![alt text](image-47.png)
+- mongoexport packs our data into json files
+- we need to use ssl flag and set it to ON
+- mongoddump and mongorestore is preferred for large datasets
+- We can also use Azure Data Studio
+- ![alt text](image-48.png)
+- We can also use Azure Databricks
+- ![alt text](image-49.png)
+- This is recommended approach for large datasets
+- To import mongodb data use the mongoimport command
+- ![alt text](image-50.png)
+- We can use the mongodump command for export
+- ![alt text](image-51.png)
+- To move data into our project, we can use mongorestore command
+- We can check the mongodb compass app to check if all the data has been imported
+- ![alt text](image-52.png)
+- ![alt text](image-53.png)
+  
+### Manage a vCore-based Azure Cosmos DB for MongoDB Cluster
+- ![alt text](image-54.png)
+- ![alt text](image-56.png)
+- We can need to setup Availability Zones.
+- There is no automatic failover. We need to plan a disaster recovery plan.
+- ![alt text](image-57.png)
+- ![alt text](image-58.png)
+- ![alt text](image-59.png)
+- ![alt text](image-60.png)
+- ![alt text](image-61.png)
+- The Cluster Tier and Storage can be scaled independently.
+- In High availability we can create standby replicas of every shard.
+- This obviously increases costs
+- ![alt text](image-62.png)
+- ![alt text](image-63.png)
+- ![alt text](image-64.png)
+- ![alt text](image-65.png)
+- ![alt text](image-66.png)
+- Run the node.js application
+- First load local data into mongodb and create the vector index.
+- Then run the workload on the database
+- ![alt text](image-67.png)
+- We can also setup an alert rule
+- We can do the same through alerts tab also
+- Action Groups involve notifying multiple people
+- We need to setup the signal we wish to respond to
+- ![alt text](image-68.png)
+- ![alt text](image-69.png)
+- We can setup an alert based on a custom log search. This takes more time though compared to specific metrics
+- ![alt text](image-70.png)
+- We can insert a custom KQL query directly.
+- ![alt text](image-71.png)
+- We can notify our administrators using Action Groups
+- ![alt text](image-72.png)
+- ![alt text](image-73.png)
+- ![alt text](image-74.png)
+- ![alt text](image-75.png)
+
+## Build Azure AI copilot for building RAG applications with Azure CosmosDB for MongoDB 
+- ![alt text](image-76.png)
+- ![alt text](image-77.png)
+- ![alt text](image-78.png)
+- ![alt text](image-79.png)
+- 2 different type of vector indexes available in Azure
+- ![alt text](image-80.png)
+- ![alt text](image-81.png)
+- ![alt text](image-82.png)
+- ![alt text](image-83.png)
+- ![alt text](image-84.png)
+- ![alt text](image-85.png)
+- ![alt text](image-86.png)
+- ![alt text](image-87.png)
+- ![alt text](image-88.png)
+- ![alt text](image-89.png)
+- The real power of Vector Search comes with ChatGPT's NLP capabilities.
+  
+## Hosting a Front End app for users to interact with our vector search
+- ![alt text](image-90.png)
+- ![alt text](image-91.png)
+- We need to create a docker file to host our application
+- ![alt text](image-92.png)
+- Note that it is running app.js
+- We need to run a docker build command to create a container image based on data in Dockerfile.
+- ![alt text](image-93.png)
+- We need to upload this image to ACR.
+- TO run the image locally, we can use docker run command
+- ![alt text](image-94.png)
+- ![alt text](image-95.png)
+- ![alt text](image-96.png)
+- Create a K8s cluster with this command
+- ![alt text](image-97.png)
+- We can configure kubectl locally like this
+- ![alt text](image-98.png)
+- ![alt text](image-99.png)
+- ![alt text](image-100.png)
+- We can deploy our nodejs app to K8s cluster.
+- just use the kubectl -f deployment.yaml command
+- To get IP of our application use this command
+- ![alt text](image-101.png)
+- ![alt text](image-102.png)
+- 

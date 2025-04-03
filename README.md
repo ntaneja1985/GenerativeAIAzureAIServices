@@ -175,4 +175,170 @@ app.Run();
 
 
 ```
+## Generative AI Tools and Copilots
+- Generative AI helps to create new content
+- People interact with generative AI through copilot or ChatGPT.
+- They accept natural language input and return appropriate response in natural language, images or code.
+- Generative AI applications are powered by language models, a specialized machine learning model that you can use to perform NLP tasks.
+- These applications can determine sentiment by classifying natural language text.
+- They can also summarize text
 
+### Using language models
+- ![alt text](image-27.png)
+
+### Using Azure OpenAI models
+- Azure Open AI hosts pretrained foundational models in Model Catalog of Azure Open AI
+- ![alt text](image-28.png)
+
+### Understanding Copilots
+- ![alt text](image-29.png)
+- ![alt text](image-31.png)
+- ![alt text](image-32.png)
+- ![alt text](image-33.png)
+- ![alt text](image-34.png)
+- For inline chat with Copilot click on CTRL + I
+- ![alt text](image-35.png)
+
+## Azure AI Services Fundamentals
+- ![alt text](image-36.png)
+- ![alt text](image-37.png)
+- ![alt text](image-103.png)
+- ![alt text](image-104.png)
+- ![alt text](image-105.png)
+- ![alt text](image-106.png)
+- ![alt text](image-107.png)
+- ![alt text](image-108.png)
+
+### Provision Azure AI Services
+- ![alt text](image-109.png)
+- ![alt text](image-110.png)
+- ![alt text](image-111.png)
+- ![alt text](image-112.png)
+
+### Exploring Content Safety Studio
+- ![alt text](image-113.png)
+- Helps to moderate content which is offensive, risky or otherwise undesirable.
+- ![alt text](image-114.png)
+- ![alt text](image-115.png)
+- ![alt text](image-116.png)
+- Change Access Control and Add role assignment and choose cognitive services user.
+- ![alt text](image-117.png)
+- ![alt text](image-118.png)
+- The model is already kind of trained. Its deep learning and everything on what's safe and unsafe things may look like.
+- So you as a developer don't have to worry about training it.
+- It's already a well trained model.
+- What you can do is configure filters and thresholds so you can say, all right, well I want to block even the lowest amount of violence, or I really only want to block things that are extremely violent.
+- ![alt text](image-119.png)
+- ![alt text](image-120.png)
+- ![alt text](image-121.png)
+- ![alt text](image-122.png)
+- We have an endpoint for the content safety studio and we can call it.
+- Content Safety Demo is a console application demonstrating how to use Azure Content Safety for text analysis and content moderation. This demo app analyzes text input, detects potentially harmful or inappropriate content, and flags it according to specified safety policies. Ideal for developers and content managers, this application showcases how Azure Content Safety can be integrated into .NET applications to enhance user safety and maintain community guidelines.
+```c#
+public class Program
+{
+    static async Task Main(string[] args)
+    {
+        // Replace the placeholders with your own values
+        string endpoint = "";
+        string subscriptionKey = "";
+
+        // Initialize the ContentSafety object
+        ContentSafety contentSafety = new ContentSafety(endpoint, subscriptionKey);
+
+        // Set the media type and blocklists
+        MediaType mediaType = MediaType.Text;
+        string[] blocklists = { "hateful-words" };
+
+        // Set the content to be tested
+        Console.WriteLine("Enter the content to be tested:");
+        string content = Console.ReadLine();
+
+        // Detect content safety
+        DetectionResult detectionResult = await contentSafety.Detect(mediaType, content, blocklists);
+
+        // Set the reject thresholds for each category
+        Dictionary<Category, int> rejectThresholds = new Dictionary<Category, int> {
+            { Category.Hate, 4 }, { Category.SelfHarm, 4 }, { Category.Sexual, 4 }, { Category.Violence, 4 }
+        };
+
+        // Make a decision based on the detection result and reject thresholds
+        Decision decisionResult = contentSafety.MakeDecision(detectionResult, rejectThresholds);
+    }
+}
+
+
+    /// <summary>
+    /// Makes a decision based on the detection result and the specified reject thresholds.
+    /// Users can customize their decision-making method.
+    /// </summary>
+    /// <param name="detectionResult">The detection result object to make the decision on.</param>
+    /// <param name="rejectThresholds">The reject thresholds for each category.</param>
+    /// <returns>The decision made based on the detection result and the specified reject thresholds.</returns>
+    public Decision MakeDecision(DetectionResult detectionResult, Dictionary<Category, int> rejectThresholds)
+    {
+        Dictionary<Category, Action> actionResult = new Dictionary<Category, Action>();
+        Action finalAction = Action.Accept;
+        foreach (KeyValuePair<Category, int> pair in rejectThresholds)
+        {
+            if (!VALID_THRESHOLD_VALUES.Contains(pair.Value))
+            {
+                throw new ArgumentException("RejectThreshold can only be in (-1, 0, 2, 4, 6)");
+            }
+
+            int? severity = GetDetectionResultByCategory(pair.Key, detectionResult);
+            if (severity == null)
+            {
+                throw new ArgumentException($"Can not find detection result for {pair.Key}");
+            }
+
+            Action action;
+            if (pair.Value != -1 && severity >= pair.Value)
+            {
+                action = Action.Reject;
+            }
+            else
+            {
+                action = Action.Accept;
+            }
+            actionResult[pair.Key] = action;
+
+            if (action.CompareTo(finalAction) > 0)
+            {
+                finalAction = action;
+            }
+        }
+
+        // blocklists
+        if (detectionResult is TextDetectionResult textDetectionResult)
+        {
+            if (textDetectionResult.BlocklistsMatch != null &&
+                textDetectionResult.BlocklistsMatch.Count > 0)
+            {
+                finalAction = Action.Reject;
+            }
+        }
+
+        Console.WriteLine(finalAction);
+        foreach (var res in actionResult)
+        {
+            Console.WriteLine($"Category: {res.Key}, Action: {res.Value}");
+        }
+
+        return new Decision(finalAction, actionResult);
+    }
+}
+
+```
+- We can setup blocklists or keywords that we want to block
+- Content Safety can even look at images
+- ![alt text](image-123.png)
+- ![alt text](image-124.png)
+- ![alt text](image-125.png)
+- ![alt text](image-126.png)
+- ![alt text](image-127.png)
+- ![alt text](image-128.png)
+- ![alt text](image-129.png)
+
+
+## Creating solutions with .NET and Azure Cognitive Services
