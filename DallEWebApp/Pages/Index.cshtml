@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "DALL E Web Demo";
+}
+
+<div class="text-center">
+    <h1 class="display-4">DALL E Web Demo</h1>
+    <p>Learn how to generatem images in your web app using DALL-E</a>.</p>
+</div>
+<div class="row">
+    <div class="col-6">
+
+    <form method="post">
+            <div class="form-group">
+                <label asp-for="Prompt" class="control-label"></label>
+                <input asp-for="Prompt" class="form-control"></input>
+                <span asp-validation-for="Prompt" class="text-danger"></span>
+                </div>
+               <button type="submit" class="btn btn-primary">Generate Image</button>
+
+    </form>
+    </div>
+    <div class="col-6">
+        <p>Original Prompt: @Model.Prompt</p>
+        <p>Revised Prompt: @Model.RevisedPrompt</p>
+        <hr/>
+        <img src ="@Model.ImageUrl" class="img-fluid"/>
+    </div>
+    </div>
