@@ -2030,6 +2030,70 @@ The current prompt - potentially optimized by the agent to reword it appropriate
 - **Retrieval-Augmented Generation (RAG)**: RAG augments a language model by connecting it to an organization's proprietary database. This technique involves retrieving relevant information from a curated dataset and using it to generate contextually accurate responses. RAG enhances the model's performance by providing it with up-to-date and domain-specific information, which helps in generating more accurate and relevant answers. RAG is particularly useful for applications where real-time access to dynamic data is crucial, such as customer support or knowledge management systems.
 - **Fine-tuning**: Fine-tuning involves taking a pre-trained model and further training it on a smaller, task-specific dataset to make it more suitable for a particular application. This process allows the model to specialize and perform better at specific tasks that require domain-specific knowledge. Fine-tuning is particularly useful for adapting models to domain-specific requirements, improving accuracy, and reducing the likelihood of generating irrelevant or inaccurate responses.
 
+- ![alt text](image-503.png)
+- ![alt text](image-504.png)
+- ![alt text](image-505.png)
+- ![alt text](image-506.png)
+- ![alt text](image-507.png)
+- Most Azure AI services, such as Azure AI Vision, Azure AI Language, and so on, can be provisioned as standalone resources, enabling you to create only the Azure resources you specifically need. Additionally, standalone Azure AI services often include a free-tier SKU with limited functionality, enabling you to evaluate and develop with the service at no cost. Each standalone Azure AI resource provides an endpoint and authorization keys that you can use to access it securely from a client application.
+- ![alt text](image-508.png)
+- The Azure AI Agent Service, which is accessed through the Azure AI Foundry SDK and can be integrated with frameworks like AutoGen and Semantic Kernel to build comprehensive AI agent solutions.
+
+### Fundamentals of AI Agents on Azure
+- AI agents are smart software services that combine generative AI models with contextual data and the ability to automate tasks based on user input and environmental factors that they perceive.
+- For example, an organization might build an AI agent to help employees manage expense claims. The agent might use a generative model combined with corporate expenses policy documentation to answer employee questions about what expenses can be claimed and what limits apply.
+- Additionally, the agent could use a programmatic function to automatically submit expense claims for regularly repeated expenses (such as a monthly cellphone bill) or intelligently route expenses to the appropriate approver based on claim amounts.
+- ![alt text](image-509.png)
+- The diagram shows the following process:
+- A user asks the expense agent a question about expenses that can be claimed.
+- The expenses agent accepts the question as a prompt.
+- The agent uses a knowledge store containing expenses policy information to ground the prompt.
+- The grounded prompt is submitted to the agent's language model to generate a response.
+- The agent generates an expense claim on behalf of the user and submits it to be processed and generate a check payment.
+- In more complex scenarios, organizations can develop multi-agent solutions in which multiple agents coordinate work between them. For example, a travel booking agent could book flights and hotels for employees and automatically submit expense claims with appropriate receipts to the expenses agent, as shown in this diagram:
+- ![alt text](image-510.png)
+- The diagram shows the following process:
+- A user provides details of an upcoming trip to a travel booking agent.
+- The travel booking agent automates the booking of flight tickets and hotel reservations.
+- The travel booking agent initiates an expense claim for the travel costs though the expense agent.
+- The expense agent submits the expense claim for processing.
+
+### How to develop AI Agents
+- There are many ways that developers can create AI agents, including multiple frameworks and SDKs.
+- Azure AI Agent Service is a managed service in Azure that is designed to provide a framework for creating, managing, and using AI agents within Azure AI Foundry
+- The service is based on the OpenAI Assistants API but with increased choice of models, data integration, and enterprise security; enabling you to use both the OpenAI SDK and the Azure Foundry SDK to develop agentic solutions.
+
+#### Open AI Assistants API
+- The OpenAI Assistants API provides a subset of the features in Azure AI Agent Service, and can only be used with OpenAI models.
+- In Azure, you can use the Assistants API with the Azure OpenAI service, though in practice the Azure AI Agent Service provides greater flexibility and functionality for agent development on Azure.
+- **Semantic Kernel** is a lightweight, open-source development kit that you can use to build AI agents and orchestrate multi-agent solutions. The core Semantic Kernel SDK is designed for all kinds of generative AI development, while the Semantic Kernel Agent Framework is a platform specifically optimized for creating agents and implementing agentic solution patterns.
+- AutoGen is an open-source framework for developing agents rapidly. It's useful as a research and ideation tool when experimenting with agents.
+- Developers can create self-hosted agents for delivery through a wide range of channels by using the **Microsoft 365 Agents SDK**. Despite the name, agents built using this SDK are not limited to Microsoft 365, but can be delivered through channels like Slack or Messenger.
+- **Microsoft Copilot Studio** provides a low-code development environment that "citizen developers" can use to quickly build and deploy agents that integrate with a Microsoft 365 ecosystem or commonly used channels like Slack and Messenger. The visual design interface of Copilot Studio makes it a good choice for building agents when you have little or no professional software development experience.
+- Business users can use the declarative Copilot Studio agent builder tool in Microsoft 365 Copilot to author basic agents for common tasks. The declarative nature of the tool enables users to create an agent by describing the functionality they need, or they can use an intuitive visual interface to specify options for their agent.
+- To develop agentic solutions that use Azure back-end services with a wide choice of models, custom storage and search services, and integration with Azure AI services, professional developers should use Azure AI Agent Service in Azure AI Foundry.
+- Start with Azure AI Agent Service to develop single, standalone agents. When you need to build multi-agent solutions, use Semantic Kernel to orchestrate the agents in your solution.
+
+### Azure AI Agent Service
+- Azure AI Agent Service is a service within Azure AI Foundry that you can use to create, test, and manage AI agents. It provides both a visual agent development experience in the Azure AI Foundry portal and a code-first development experience using the Azure AI Foundry SDK
+- ![alt text](image-511.png)
+
+#### Components of an Agent
+- Agents developed using Azure AI Agent Service have the following elements:
+- Model: A deployed generative AI model that enables the agent to reason and generate natural language responses to prompts. You can use common OpenAI models and a selection of models from the Azure AI Foundry model catalog.
+- Knowledge: data sources that enable the agent to ground prompts with contextual data. Potential knowledge sources include Internet search results from Microsoft Bing, an Azure AI Search index, or your own data and documents.
+- Tools: Programmatic functions that enable the agent to automate actions. Built-in tools to access knowledge in Azure AI Search and Bing are provided as well as a code interpreter tool that you can use to generate and run Python code. You can also create custom tools using your own code or Azure Functions.
+- Conversations between users and agents take place on a thread, which retains a history of the messages exchanged in the conversation as well as any data assets, such as files, that are generated.
+- ![alt text](image-512.png)
+- ![alt text](image-513.png)
+- ![alt text](image-514.png)
+- ![alt text](image-515.png)
+
+
+
+
+
+
 
 
 
