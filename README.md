@@ -1972,3 +1972,69 @@ You can use one of several methods to create your search solution:
 - Azure AI Search indexing pipeline ingests unstructured data, serializes the information in JSON, performs AI enrichment, and brings data to a search index.
 
 ## Fundamentals of Generative AI
+- Generative AI is a form of artificial intelligence in which models are trained to generate new original content based on natural language input. In other words, you can describe a desired output in normal everyday language, and the model can respond by creating appropriate text, image, code, and more.
+- Generative AI often appears as chat-based assistants that are integrated into applications to help users find information and perform tasks efficiently. One example of such an application is Microsoft Copilot, an AI-powered productivity tool designed to enhance your work experience by providing real-time intelligence and assistance. All generative AI assistants utilize language models. A subset of these assistants also execute programmable tasks.
+- Agents are applications that can respond to user input or assess situations autonomously, and take appropriate actions. These actions could help with a series of tasks. For example, an "executive assistant" agent could provide details about the location of a meeting on your calendar, then attach a map or automate the booking of a taxi or rideshare service to help you get there.
+- Often, you will use services to extend or build Generative AI applications. These services provide the infrastructure, tools, and frameworks necessary to develop, train, and deploy generative AI models. For example, Microsoft provides services such as Copilot Studio to extend Microsoft 365 Copilot and Microsoft Azure AI Foundry to build AI from different models.
+
+### How do language models work?
+- machines have a hard time deciphering text as they mostly rely on numbers. To read text, we therefore need to convert the presented text to numbers.
+- One important development to allow machines to more easily work with text has been tokenization. Tokens are strings with a known meaning, usually representing a word.
+ - Tokenization is turning words into tokens, which are then converted to numbers. A statistical approach to tokenization is by using a pipeline:
+ - ![alt text](image-499.png)
+ - Tokenization allowed for text to be labeled. As a result, statistical techniques could be used to let computers find patterns in the data instead of applying rule-based models.
+
+ ### Understanding word embeddings
+ - One of the key concepts introduced by applying deep learning techniques to NLP is word embeddings. Word embeddings solved the problem of not being able to define the semantic relationship between words.
+ - Before word embeddings, a prevailing challenge with NLP was to detect the semantic relationship between words. Word embeddings represent words in a vector space, so that the relationship between words can be easily described and calculated.
+ - Word embeddings are created during self-supervised learning. During the training process, the model analyzes the cooccurrence patterns of words in sentences and learns to represent them as vectors. The vectors represent the words with coordinates in a multidimensional space. The distance between words can then be calculated by determining the distance between the relative vectors, describing the semantic relationship between words.
+ - Imagine you train a model on a large corpus of text data. During the training process, the model finds that the words bike and car are often used in the same patterns of words. Next to finding bike and car in the same text, you can also find each of them to be used when describing similar things. For example, someone may drive a bike or a car, or buy a bike or a car at a shop.
+ - Though word embeddings are a great approach to detecting the semantic relationship between words, it still has its problems. For example, words with different intents like love and hate often appear related because they're used in similar context. Another problem was that the model would only use one entry per word, resulting in a word with different meanings like bank to be semantically related to a wild array of words.
+ - To understand text isn't just to understand individual words, presented in isolation. Words can differ in their meaning depending on the context they're presented in. In other words, the sentence around a word matters to the meaning of the word.
+
+- Before deep learning, including the context of a word was a task too complex and costly. One of the first breakthroughs in including the context were Recurrent Neural Networks (RNNs).
+
+- RNNs consist of multiple sequential steps. Each step takes an input and a hidden state. Imagine the input at each step to be a new word. Each step also produces an output. The hidden state can serve as a memory of the network, storing the output of the previous step and passing it as input to the next step.
+
+- ![alt text](image-500.png)
+
+- RNNs allow for context to be included when deciphering the meaning of a word in relation to the complete sentence. However, as the hidden state of an RNN is updated with each token, the actual relevant information, or signal, may be lost.
+- In the example provided, Vincent Van Gogh's name is at the start of the sentence, while the mask is at the end. At the final step, when the mask is presented as input, the hidden state may contain a large amount of information that is irrelevant for predicting the mask's output. Since the hidden state has a limited size, the relevant information may even be deleted to make room for new and more recent information.
+
+
+### Transformer Architecture
+- Transformer architecture introduced concepts that drastically improved a model's ability to understand and generate text. Different models have been trained using adaptations of the Transformer architecture to optimize for specific NLP tasks.
+- There are two main components in the original Transformer architecture:
+- The encoder: Responsible for processing the input sequence and creating a representation that captures the context of each token.
+- The decoder: Generates the output sequence by attending to the encoder's representation and predicting the next token in the sequence.
+- The most important innovations presented in the Transformer architecture were positional encoding and multi-head attention. 
+- In the encoder layer, an input sequence is encoded with positional encoding, after which multi-head attention is used to create a representation of the text.
+- In the decoder layer, an (incomplete) output sequence is encoded in a similar way, by first using positional encoding and then multi-head attention. Then, the multi-head attention mechanism is used a second time within the decoder to combine the output of the encoder and the output of the encoded output sequence that was passed as input to the decoder part.
+- the position encoder ensures the story is told in the right order, while multi-head attention ensures the transformer understands the story from multiple angles. Together, they make transformers incredibly powerful for processing and creating meaningful text
+- Before Transformers, language models used word embeddings to encode text into vectors. In the Transformer architecture, positional encoding is used to encode text into vectors. Positional encoding is the sum of word embedding vectors and positional vectors. By doing so, the encoded text includes information about the meaning and position of a word in a sentence.
+- ![alt text](image-501.png)
+- The most important technique used by Transformers to process text is the use of attention instead of recurrence. In this way, the Transformer architecture provides an alternative to RNNs. Whereas RNNs are compute-intensive since they process words sequentially, Transformers don't process the words sequentially, but instead process each word independently in parallel by using attention.
+- Transformers use an attention function, where a new word is encoded (using positional encoding) and represented as a query. The output of an encoded word is a key with an associated value.
+- ![alt text](image-502.png)
+- The Transformer architecture has allowed us to train models in a more efficient way. Instead of processing each token in a sentence or sequence, attention allows a model to process tokens in parallel in various ways.
+- Today, importantly, developers do not need to train models from scratch. To build a generative AI application, you can use pre-trained models. Some language models are open-source and publicly available through communities like Hugging Face. 
+- Azure offers the most commonly used language models as foundation models in the Azure AI Foundry model catalog. Foundation models are pretrained on large texts and can be fine-tuned for specific tasks with a relatively small dataset.
+- ou can deploy a foundation model to an endpoint without any extra training. If you want the model to be specialized in a task, or perform better on domain-specific knowledge, you can also choose to fine-tune a foundation model.
+- In most cases, an agent doesn't just send your prompt as-is to the language model. Usually, your prompt is augmented with:
+- A system message that sets conditions and constraints for the language model behavior. For example, "You're a helpful assistant that responds in a cheerful, friendly manner." These system messages determine constraints and styles for the model's responses.
+- The conversation history for the current session, including past prompts and responses. The history enables you to refine the response iteratively while maintaining the context of the conversation.
+The current prompt - potentially optimized by the agent to reword it appropriately for the model or to add more grounding data to scope the response.
+- The term prompt engineering describes the process of prompt improvement. Both developers who design applications and consumers who use those applications can improve the quality of responses from generative AI by considering prompt engineering. Next, take a look at other methods that are utilized by developers to improve the quality of responses.
+- Developers use several key mechanisms to help improve the performance and trustworthiness of generative AI responses
+- **Grounding Data**: grounding refers to the process of ensuring that a system's outputs are aligned with factual, contextual, or reliable data sources. This can be done in various ways, such as linking the model to a database, using search engines to retrieve real-time information, or incorporating domain-specific knowledge bases. The goal is to anchor the model's responses to these data sources, enhancing the trustworthiness and applicability of the generated content.
+- **Retrieval-Augmented Generation (RAG)**: RAG augments a language model by connecting it to an organization's proprietary database. This technique involves retrieving relevant information from a curated dataset and using it to generate contextually accurate responses. RAG enhances the model's performance by providing it with up-to-date and domain-specific information, which helps in generating more accurate and relevant answers. RAG is particularly useful for applications where real-time access to dynamic data is crucial, such as customer support or knowledge management systems.
+- **Fine-tuning**: Fine-tuning involves taking a pre-trained model and further training it on a smaller, task-specific dataset to make it more suitable for a particular application. This process allows the model to specialize and perform better at specific tasks that require domain-specific knowledge. Fine-tuning is particularly useful for adapting models to domain-specific requirements, improving accuracy, and reducing the likelihood of generating irrelevant or inaccurate responses.
+
+
+
+
+
+
+
+
+
