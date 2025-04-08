@@ -114,3 +114,71 @@
 #### Exploring Speech Studio
 - ![alt text](image-460.png)
 - ![alt text](image-461.png)
+
+## Fundamentals of Azure AI Document Intelligence and Knowledge Mining with Azure AI Search
+- ![alt text](image-516.png)
+- ![alt text](image-517.png)
+- Document intelligence uses OCR
+- ![alt text](image-518.png)
+- ![alt text](image-519.png)
+- ![alt text](image-520.png)
+- ![alt text](image-521.png)
+- ![alt text](image-522.png)
+- ![alt text](image-523.png)
+- ![alt text](image-524.png)
+- ![alt text](image-525.png)
+- ![alt text](image-526.png)
+- ![alt text](image-527.png)
+- ![alt text](image-528.png)
+
+## Using Knowledge Mining and Azure AI Search
+- ![alt text](image-529.png)
+- ![alt text](image-530.png)
+- ![alt text](image-531.png)
+- ![alt text](image-532.png)
+- ![alt text](image-533.png)
+- ![alt text](image-534.png)
+- ![alt text](image-535.png)
+- ![alt text](image-536.png)
+- ![alt text](image-537.png)
+- ![alt text](image-538.png)
+- ![alt text](image-539.png)
+- ![alt text](image-540.png)
+- ![alt text](image-541.png)
+- ![alt text](image-542.png)
+
+
+## Fundamentals of Generative AI
+- ![alt text](image-543.png)
+- ![alt text](image-544.png)
+- ![alt text](image-545.png)
+- ![alt text](image-546.png)
+- ![alt text](image-547.png)
+- ![alt text](image-548.png)
+- ![alt text](image-549.png)
+- ![alt text](image-550.png)
+- ![alt text](image-551.png)
+- ![alt text](image-552.png)
+- ![alt text](image-553.png)
+- ![alt text](image-554.png)
+
+## Introduction to Azure AI Studio
+- ![alt text](image-555.png)
+- ![alt text](image-556.png)
+- ![alt text](image-557.png)
+- ![alt text](image-558.png)
+- ![alt text](image-561.png)
+- ![alt text](image-562.png)
+- ![alt text](image-563.png)
+- ![alt text](image-564.png)
+- Hub allows us to share and collaborate with other people
+- ![alt text](image-565.png)
+- ![alt text](image-566.png)
+- ![alt text](image-567.png)
+- ![alt text](image-568.png)
+- These stages come from NIST framework.
+- ![alt text](image-569.png)
+- ![alt text](image-570.png)
+- ![alt text](image-571.png)
+- ![alt text](image-572.png)
+  
